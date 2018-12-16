@@ -1,4 +1,42 @@
-<p>
-  pessoa-list works!
-</p>
 {{ pessoa.nome }}
+<button mat-mini-fab>
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button (click)="edit(element.position)"><i class="material-icons">create</i></button>
+        <button mat-button (click)="addPhone(element.position)"><i class="material-icons">phone_callback</i></button>
+        <button mat-button (click)="remove(element.position)"><i class="material-icons">clear</i></button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
