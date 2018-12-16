@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {LayoutModule} from './layout/layout.module';
+import { LayoutModule } from './layout/layout.module';
+import { ApiHttpClient } from './shared/api.http.client';
 
 @NgModule({
   declarations: [
@@ -17,10 +16,12 @@ import {LayoutModule} from './layout/layout.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule,
-    MatInputModule
+    HttpClientModule,
+    LayoutModule
   ],
-  providers: [],
+  providers: [
+    ApiHttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
