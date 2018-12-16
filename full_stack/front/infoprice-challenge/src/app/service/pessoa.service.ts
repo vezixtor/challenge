@@ -4,7 +4,7 @@ import {FormGroup} from '@angular/forms';
 import {Pessoa} from '../model/pessoa';
 
 @Injectable()
-export class ProductService {
+export class PessoaService {
 
   eventEmitter = new EventEmitter<Pessoa>();
 
