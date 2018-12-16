@@ -1,0 +1,22 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu">
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+					<span>
+					<img alt="image" class="img-circle" src=""/>
+					</span>
+          <a data-toggle="modal" data-target="userDetailsModal" (click)="showProfile()">
+					<span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Meu Perfil</strong></span></span> </a>
+        </div>
+        <div class="logo-element">KC</div>
+      </li>
+      <li routerLinkActive="active"><a routerLink="/dashboard"><i class="fa fa-cubes"></i> <span class="nav-label">Dashboard</span></a></li>
+      <li routerLinkActive="active"><a routerLink="/clientes"><i class="fa fa-users"></i> <span class="nav-label">Cliente</span></a></li>
+      <li routerLinkActive="active"><a routerLink="/produtos"><i class="fa fa-bookmark-o"></i> <span class="nav-label">Produto</span></a></li>
+      <li routerLinkActive="active"><a routerLink="/relatorios"><i class="fa fa-certificate"></i> <span class="nav-label">Relatório</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- <app-profile></app-profile> -->
