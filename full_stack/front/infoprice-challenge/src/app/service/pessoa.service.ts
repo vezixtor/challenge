@@ -4,6 +4,7 @@ import {FormGroup} from '@angular/forms';
 
 import { ApiHttpClient } from '../shared/api.http.client';
 import {Pessoa} from '../model/pessoa';
+import {Page} from '../model/page';
 
 @Injectable()
 export class PessoaService {
@@ -20,8 +21,9 @@ export class PessoaService {
   }
 
   getAll() {
+    console.log('getAll');
     return new Promise(resolve => {
-      this.http.get<Pessoa[]>('/pessoa')
+      this.http.get<Page<Pessoa>>('/pessoa')
         .subscribe(success => {
           resolve(success);
         }, err => {
