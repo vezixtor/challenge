@@ -1,13 +1,14 @@
 package com.herokuapp.infopricechallenge.service.impl;
 
 import com.herokuapp.infopricechallenge.model.adapter.PessoaAdapter;
-import com.herokuapp.infopricechallenge.model.dto.ListResultDTO;
-import com.herokuapp.infopricechallenge.model.dto.PageDTO;
 import com.herokuapp.infopricechallenge.model.dto.v1.PessoaDTO;
 import com.herokuapp.infopricechallenge.model.entity.Pessoa;
 import com.herokuapp.infopricechallenge.repository.PessoaRepository;
 import com.herokuapp.infopricechallenge.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,14 +22,14 @@ public class PessoaServiceImpl implements PessoaService {
     private PessoaRepository repository;
 
     @Override
-    public ListResultDTO<PessoaDTO> findAll(PessoaDTO dto, PageDTO page) {
-        List<Pessoa> entitiesPage = this.repository.findAll();
+    public Page<PessoaDTO> findAll(Pageable pageable) {
+        Page<Pessoa> entitiesPage = this.repository.findAll(pageable);
 
-        List<PessoaDTO> entitiesDTO = entitiesPage.stream()
+        List<PessoaDTO> dtos = entitiesPage.stream()
                 .map(PessoaAdapter::toDTO)
                 .collect(Collectors.toList());
 
-        return new ListResultDTO<>(entitiesDTO);
+        return new PageImpl(dtos, entitiesPage.getPageable(), entitiesPage.getTotalElements());
     }
 
     @Override

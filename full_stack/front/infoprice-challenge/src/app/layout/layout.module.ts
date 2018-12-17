@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { PessoaModule } from '../pessoa/pessoa.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {FooterComponent} from './footer/footer.component';
   ],
   imports: [
     CommonModule,
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    PessoaModule
   ],
   exports: [
     LayoutComponent

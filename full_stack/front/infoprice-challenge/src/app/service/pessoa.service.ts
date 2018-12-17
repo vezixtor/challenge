@@ -1,25 +1,29 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormGroup} from '@angular/forms';
+
+import { ApiHttpClient } from '../shared/api.http.client';
 import {Pessoa} from '../model/pessoa';
+import {Page} from '../model/page';
 
 @Injectable()
 export class PessoaService {
 
   eventEmitter = new EventEmitter<Pessoa>();
 
-  product: Pessoa = new Pessoa();
+  pessoa: Pessoa = new Pessoa();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: ApiHttpClient) {
   }
 
-  emitProduct(product: Pessoa) {
-    this.eventEmitter.emit(product);
+  emitProduct(pessoa: Pessoa) {
+    this.eventEmitter.emit(pessoa);
   }
 
   getAll() {
+    console.log('getAll');
     return new Promise(resolve => {
-      this.http.get<Pessoa[]>('/pessoa')
+      this.http.get<Page<Pessoa>>('/pessoa')
         .subscribe(success => {
           resolve(success);
         }, err => {
