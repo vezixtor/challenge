@@ -32,9 +32,9 @@ export class PessoaService {
     });
   }
 
-  create(formGroup: FormGroup) {
+  create(pessoa: Pessoa) {
     return new Promise(resolve => {
-      this.http.post<Pessoa>('/pessoa', formGroup.value)
+      this.http.post<Pessoa>('/pessoa', pessoa)
         .subscribe(success => {
           resolve(success);
         }, err => {
@@ -54,9 +54,9 @@ export class PessoaService {
     });
   }
 
-  update(formGroup: FormGroup) {
+  update(pessoa: Pessoa) {
     return new Promise(resolve => {
-      this.http.put<Pessoa>('/pessoa', formGroup.value)
+      this.http.put<Pessoa>('/pessoa', pessoa)
         .subscribe(success => {
           resolve(success);
         }, err => {

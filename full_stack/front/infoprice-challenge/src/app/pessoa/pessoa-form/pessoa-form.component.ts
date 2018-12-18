@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
-import { PessoaService } from 'src/app/service/pessoa.service';
 
 @Component({
   selector: 'app-pessoa-form',
@@ -9,9 +7,12 @@ import { PessoaService } from 'src/app/service/pessoa.service';
   styleUrls: ['./pessoa-form.component.css']
 })
 export class PessoaFormComponent implements OnInit {
+
   form: FormGroup;
-  
-  constructor(private pessoaService: PessoaService) {
+
+  @Output() submited = new EventEmitter();
+
+  constructor() {
   }
 
   ngOnInit() {
@@ -20,13 +21,8 @@ export class PessoaFormComponent implements OnInit {
   onSubmit(form) {
     this.form = form;
     console.log(this.form.value);
-    this.create();
-  }
-
-  create() {
-    this.pessoaService.create(this.form)
-      .then((pessoa: any) => console.log(pessoa))
-      .catch(error => console.log(error));
+    this.submited.emit(this.form.value);
+    //this.create();
   }
 
 }

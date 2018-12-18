@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PessoaListComponent } from '../pessoa/pessoa-list/pessoa-list.component';
-import { PessoaFormComponent } from '../pessoa/pessoa-form/pessoa-form.component';
+import { PessoaPostComponent } from '../pessoa/pessoa-post/pessoa-post.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
       //{path: '', component: PessoaListComponent }
     ]
   },
-  { path: 'pessoa', component: PessoaFormComponent }
+  { path: 'pessoa', component: PessoaPostComponent }
 ];
 
 @NgModule({
