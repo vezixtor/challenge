@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../shared/material-module';
 import { PessoaService } from '../service/pessoa.service';
@@ -15,6 +16,7 @@ import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     MaterialModule
   ],
   providers: [
