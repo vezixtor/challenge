@@ -31,4 +31,10 @@ public class Pessoa {
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(columnDefinition = "pessoa")
     private List<Endereco> enderecos = new ArrayList<>();
+
+    public void put(Pessoa entity) {
+        this.id = entity.getId();
+        this.nome = entity.getNome();
+        this.email = entity.getEmail();
+    }
 }

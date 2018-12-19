@@ -47,10 +47,11 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public PessoaDTO update(Long id, PessoaDTO dto) {
+        Pessoa pessoa = this.repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found"));
         Pessoa newEntity = PessoaAdapter.toEntity(dto);
-        Optional<Pessoa> entity = this.repository.findById(id);
-        //entity.update(newEntity); //TODO update(newEntity) precisa ser implementado na entidade
-        Pessoa saved = this.repository.save(entity.get());
+        pessoa.put(newEntity);
+        Pessoa saved = this.repository.save(pessoa);
         return PessoaAdapter.toDTO(saved);
     }
 
