@@ -8,12 +8,13 @@ import { PessoaService } from '../service/pessoa.service';
 import { PessoaListComponent } from './pessoa-list/pessoa-list.component';
 import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
 import { PessoaPostComponent } from './pessoa-post/pessoa-post.component';
+import { PessoaPutComponent } from './pessoa-put/pessoa-put.component';
 
 @NgModule({
   declarations: [
     PessoaListComponent,
     PessoaPostComponent, 
-    PessoaFormComponent
+    PessoaFormComponent, PessoaPutComponent
   ],
   imports: [
     CommonModule,

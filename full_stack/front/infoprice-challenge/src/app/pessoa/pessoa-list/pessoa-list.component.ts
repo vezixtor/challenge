@@ -20,9 +20,6 @@ export class PessoaListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pessoaService.read(1).then((pessoa: Pessoa) => {
-      this.pessoa = pessoa;
-    });
     this.pessoaService.getAll().then((pessoas: Page<Pessoa>) => {
       this.pessoas = pessoas;
     });

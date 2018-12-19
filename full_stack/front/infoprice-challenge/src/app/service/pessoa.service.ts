@@ -56,7 +56,7 @@ export class PessoaService {
 
   update(pessoa: Pessoa) {
     return new Promise(resolve => {
-      this.http.put<Pessoa>('/pessoa', pessoa)
+      this.http.put<Pessoa>('/pessoa/' + pessoa.id, pessoa)
         .subscribe(success => {
           resolve(success);
         }, err => {
