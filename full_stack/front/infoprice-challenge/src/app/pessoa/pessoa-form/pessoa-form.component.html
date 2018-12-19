@@ -1,0 +1,20 @@
+
+
+<div class="example-button-row">
+  <a mat-stroked-button color="warn" routerLink="/">Voltar</a>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div class="form-group">
+    <label for="nome">Nome</label>
+    <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="pessoa.nome" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <input type="text" class="form-control" id="email" name="email" [(ngModel)]="pessoa.email" placeholder="">
+  </div>
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+<p>Form Status: {{ form?.status }}</p>
+<pre>{{ form?.value }}</pre>
