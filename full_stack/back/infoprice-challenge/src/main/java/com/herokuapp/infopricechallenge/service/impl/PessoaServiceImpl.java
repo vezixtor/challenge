@@ -34,15 +34,16 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public PessoaDTO findOne(Long id) {
-        Optional<Pessoa> entity = this.repository.findById(id);
-        return PessoaAdapter.toDTO(entity.get());
+        Pessoa entity = this.repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found"));
+        return PessoaAdapter.toDTO(entity);
     }
 
     @Override
     public PessoaDTO save(PessoaDTO dto) {
         Pessoa entity = PessoaAdapter.toEntity(dto);
-        this.repository.save(entity);
-        return PessoaAdapter.toDTO(entity);
+        Pessoa saved = this.repository.save(entity);
+        return PessoaAdapter.toDTO(saved);
     }
 
     @Override

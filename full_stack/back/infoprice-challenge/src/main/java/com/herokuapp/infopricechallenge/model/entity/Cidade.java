@@ -25,4 +25,12 @@ public class Cidade {
 
     @NotNull
     private Estado estado;
+
+    public void put(Cidade entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.nome = entity.getNome();
+            this.estado = entity.getEstado();
+        }
+    }
 }

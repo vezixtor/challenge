@@ -1,13 +1,14 @@
 package com.herokuapp.infopricechallenge.service.impl;
 
 import com.herokuapp.infopricechallenge.model.adapter.EnderecoAdapter;
-import com.herokuapp.infopricechallenge.model.dto.ListResultDTO;
-import com.herokuapp.infopricechallenge.model.dto.PageDTO;
 import com.herokuapp.infopricechallenge.model.dto.v1.EnderecoDTO;
 import com.herokuapp.infopricechallenge.model.entity.Endereco;
 import com.herokuapp.infopricechallenge.repository.EnderecoRepository;
 import com.herokuapp.infopricechallenge.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,40 +17,42 @@ import java.util.stream.Collectors;
 
 @Service
 public class EnderecoServiceImpl implements EnderecoService {
-    
+
     @Autowired
     private EnderecoRepository repository;
-    
+
     @Override
-    public ListResultDTO<EnderecoDTO> findAll(EnderecoDTO dto, PageDTO page) {
-        List<Endereco> entitiesPage = this.repository.findAll();
+    public Page<EnderecoDTO> findAll(Pageable pageable) {
+        Page<Endereco> entitiesPage = this.repository.findAll(pageable);
 
-        List<EnderecoDTO> entitiesDTO = entitiesPage.stream()
-            .map(EnderecoAdapter::toDTO)
-            .collect(Collectors.toList());
+        List<EnderecoDTO> dtos = entitiesPage.stream()
+                .map(EnderecoAdapter::toDTO)
+                .collect(Collectors.toList());
 
-        return new ListResultDTO<>(entitiesDTO);
+        return new PageImpl(dtos, entitiesPage.getPageable(), entitiesPage.getTotalElements());
     }
-    
+
     @Override
     public EnderecoDTO findOne(Long id) {
-        Optional<Endereco> entity = this.repository.findById(id);
-        return EnderecoAdapter.toDTO(entity.get());
+        Endereco entity = this.repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found"));
+        return EnderecoAdapter.toDTO(entity);
     }
-    
+
     @Override
     public EnderecoDTO save(EnderecoDTO dto) {
         Endereco entity = EnderecoAdapter.toEntity(dto);
         Endereco saved = this.repository.save(entity);
         return EnderecoAdapter.toDTO(saved);
     }
-    
+
     @Override
     public EnderecoDTO update(Long id, EnderecoDTO dto) {
+        Endereco pessoa = this.repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found"));
         Endereco newEntity = EnderecoAdapter.toEntity(dto);
-        Optional<Endereco> entity = this.repository.findById(id);
-        //entity.update(newEntity); //TODO update(newEntity) precisa ser implementado na entidade
-        Endereco saved = this.repository.save(entity.get());
+        pessoa.put(newEntity);
+        Endereco saved = this.repository.save(pessoa);
         return EnderecoAdapter.toDTO(saved);
     }
 

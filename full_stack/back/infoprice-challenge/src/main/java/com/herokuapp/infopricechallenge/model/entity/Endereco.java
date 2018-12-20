@@ -38,4 +38,16 @@ public class Endereco {
     private Cidade cidade;
 
     private String cep;
+
+    public void put(Endereco entity) {
+        if (entity != null) {
+            this.pessoa = entity.getPessoa();
+            this.logradouro = entity.getLogradouro();
+            this.numero = entity.getNumero();
+            this.complemento = entity.getComplemento();
+            this.bairro = entity.getBairro();
+            this.cidade = entity.getCidade();
+            this.cep = entity.getCep();
+        }
+    }
 }

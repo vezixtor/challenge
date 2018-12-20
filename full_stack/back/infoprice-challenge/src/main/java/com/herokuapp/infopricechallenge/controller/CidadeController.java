@@ -1,13 +1,13 @@
 package com.herokuapp.infopricechallenge.controller;
 
-import com.herokuapp.infopricechallenge.model.dto.ListResultDTO;
-import com.herokuapp.infopricechallenge.model.dto.PageDTO;
 import com.herokuapp.infopricechallenge.model.dto.v1.CidadeDTO;
 import com.herokuapp.infopricechallenge.service.CidadeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -25,9 +25,9 @@ public class CidadeController {
 
     @GetMapping
     @ApiOperation("Retorna uma lista de registros com paginação")
-    public ListResultDTO<CidadeDTO> findAll(CidadeDTO dto, PageDTO page) {
+    public Page<CidadeDTO> findAll(Pageable pageable) {
         log.debug("Listar todos {} ", RECURSO);
-        return this.service.findAll(dto, page);
+        return this.service.findAll(pageable);
     }
 
     @GetMapping("{id}")
