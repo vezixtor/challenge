@@ -7,10 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { ApiHttpClient } from './shared/api.http.client';
+import { EnderecoFormComponent } from './endereco/endereco-form/endereco-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EnderecoFormComponent
   ],
   imports: [
     BrowserModule,

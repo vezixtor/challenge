@@ -30,7 +30,7 @@
     <th mat-header-cell *matHeaderCellDef> Ações </th>
     <td mat-cell *matCellDef="let element">
       <button mat-button routerLink="/pessoa/{{element.id}}/editar"><i class="material-icons">create</i></button>
-      <button mat-button (click)="addPhone(element)"><i class="material-icons">home</i></button>
+      <button mat-button routerLink="/pessoa/{{element.id}}/endereco/novo"><i class="material-icons">home</i></button>
       <button mat-button (click)="remove(element)"><i class="material-icons">clear</i></button>
     </td>
   </ng-container>
