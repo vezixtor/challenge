@@ -1,6 +1,7 @@
 package com.herokuapp.infopricechallenge.controller;
 
 import com.herokuapp.infopricechallenge.model.dto.v1.CidadeDTO;
+import com.herokuapp.infopricechallenge.model.type.Estado;
 import com.herokuapp.infopricechallenge.service.CidadeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +23,13 @@ public class CidadeController {
 
     @Autowired
     private CidadeService service;
+
+    @GetMapping("estado/{estado}")
+    @ApiOperation("Retorna uma lista de registros com paginação")
+    public Page<CidadeDTO> findCidades(@PathVariable Estado estado, Pageable pageable) {
+        log.debug("Listar todos {} ", RECURSO);
+        return service.findByEstado(estado, pageable);
+    }
 
     @GetMapping
     @ApiOperation("Retorna uma lista de registros com paginação")

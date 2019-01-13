@@ -3,6 +3,7 @@ package com.herokuapp.infopricechallenge.service.impl;
 import com.herokuapp.infopricechallenge.model.adapter.CidadeAdapter;
 import com.herokuapp.infopricechallenge.model.dto.v1.CidadeDTO;
 import com.herokuapp.infopricechallenge.model.entity.Cidade;
+import com.herokuapp.infopricechallenge.model.type.Estado;
 import com.herokuapp.infopricechallenge.repository.CidadeRepository;
 import com.herokuapp.infopricechallenge.service.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,16 @@ public class CidadeServiceImpl implements CidadeService {
     @Override
     public void delete(Long id) {
         this.repository.deleteById(id);
+    }
+
+    @Override
+    public Page<CidadeDTO> findByEstado(Estado estado, Pageable pageable) {
+        Page<Cidade> entitiesPage = this.repository.findByEstado(estado, pageable);
+
+        List<CidadeDTO> dtos = entitiesPage.stream()
+                .map(CidadeAdapter::toDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl(dtos, entitiesPage.getPageable(), entitiesPage.getTotalElements());
     }
 }

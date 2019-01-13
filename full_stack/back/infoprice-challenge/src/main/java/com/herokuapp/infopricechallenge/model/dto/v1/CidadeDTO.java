@@ -1,6 +1,5 @@
 package com.herokuapp.infopricechallenge.model.dto.v1;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.herokuapp.infopricechallenge.model.type.Estado;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -24,6 +24,8 @@ public class Cidade {
     private String nome;
 
     @NotNull
+    @Column(length = 2)
+    @Enumerated(EnumType.STRING)
     private Estado estado;
 
     public void put(Cidade entity) {
