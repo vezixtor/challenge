@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { ApiHttpClient } from './shared/api.http.client';
 import { EnderecoFormComponent } from './endereco/endereco-form/endereco-form.component';
+import { EstadoService } from './service/estado.service';
+import { FormsModule } from '@angular/forms';
+import { CidadeService } from './service/cidade.service';
 
 @NgModule({
   declarations: [
@@ -19,10 +22,13 @@ import { EnderecoFormComponent } from './endereco/endereco-form/endereco-form.co
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     LayoutModule
   ],
   providers: [
-    ApiHttpClient
+    ApiHttpClient,
+    EstadoService,
+    CidadeService
   ],
   bootstrap: [AppComponent]
 })
