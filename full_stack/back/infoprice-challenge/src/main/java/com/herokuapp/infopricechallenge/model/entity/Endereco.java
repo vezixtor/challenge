@@ -22,7 +22,6 @@ public class Endereco {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(columnDefinition = "enderecos")
     private Pessoa pessoa;
 
     private String logradouro;

@@ -20,12 +20,12 @@ public class EnderecoAdapter {
             return null;
         }
 
-        PessoaDTO pessoa = PessoaAdapter.toDTO(entity.getPessoa());
+//        PessoaDTO pessoa = PessoaAdapter.toDTO(entity.getPessoa());
         CidadeDTO cidade = CidadeAdapter.toDTO(entity.getCidade());
 
         return EnderecoDTO.builder()
             .id(entity.getId())
-            .pessoa(pessoa)
+//            .pessoa(pessoa)
             .logradouro(entity.getLogradouro())
             .numero(entity.getNumero())
             .complemento(entity.getComplemento())

@@ -28,8 +28,8 @@ public class Pessoa {
     @NotNull
     private String email;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(columnDefinition = "pessoa")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "pessoa_id")
     private List<Endereco> enderecos = new ArrayList<>();
 
     public void put(Pessoa entity) {
